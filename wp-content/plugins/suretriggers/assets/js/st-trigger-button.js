@@ -39,16 +39,9 @@ function st_trigger_ajax(element) {
                     }
                     if( xhr.responseText != '' ){
                         var response = JSON.parse(xhr.responseText);
-                        const parsed = new URL(response.data);
-						if (['http:', 'https:'].includes(parsed.protocol)) {
-							const redirectencodedURL = encodeURI(parsed.href);
-							try {
-								const redirectURL = decodeURI(redirectencodedURL);
-								window.location.href = redirectURL;
-							} catch (e) {
-								console.error(e);
-							}
-						}
+                        if (response.data) {
+                            location.href = response.data;
+                        }
                     }
                 }
             }
